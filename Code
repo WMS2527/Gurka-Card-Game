@@ -1,0 +1,29 @@
+// This is a temporary workspace. It will only be used
+// when the main is not accessible.
+#include <iostream>
+
+using namespace std;
+
+void homescreen_sign();
+
+int main()
+{
+homescreen_sign();
+}
+// Function to display game title.
+void homescreen_sign()
+{
+    cout << " ----------------------------------------------\n";
+    cout << "|            ╔═══╦╗ ╔╦═══╦╗╔═╦═══╗             |\n";
+    cout << "|            ║╔═╗║║ ║║╔═╗║║║╔╣╔═╗║             |\n";
+    cout << "|            ║║ ╚╣║ ║║╚═╝║╚╝╝║║ ║║             |\n";
+    cout << "|            ║║╔═╣║ ║║╔╗╔╣╔╗║║╚═╝║             |\n";
+    cout << "|            ║╚╩═║╚═╝║║║╚╣║║╚╣╔═╗║             |\n";
+    cout << "|            ╚═══╩═══╩╝╚═╩╝╚═╩╝ ╚╝             |\n";
+    cout << " ----------------------------------------------\n";
+    cout << "               Swedish for 'Cucumber'\n\n";
+}
+// If anyone can help me, it'd be greatly appreciated.
+// I don't have Reddit, and this is for school.
+// Please try to reach out to me on Github in some way, if it's possible.
+// I need a working homescreen (Start Game, Display Rules) and to get 7 cards each to be dealt to 3 players from a standard 52-card deck.
