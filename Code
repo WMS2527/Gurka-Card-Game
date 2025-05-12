@@ -1,7 +1,9 @@
+// Note: Code will only work correctly / without errors on Windows devices.
 #include <iostream>
 #include <algorithm>
 #include <random>
 #include <ctime>
+#include <windows.h>
 
 using namespace std;
 
@@ -13,6 +15,7 @@ void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[]
 void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer);
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
     homescreen();  // this controls everything
     return 0;
 }
