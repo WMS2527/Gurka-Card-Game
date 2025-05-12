@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <random>
 #include <ctime>
-#include <windows.h>
 
 using namespace std;
 
@@ -14,35 +13,7 @@ void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[]
 void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer);
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
-    const int deckSize = 16;
-    int deck[deckSize];
-    const int numPlayers = 4; // Example: 4 players
-    const int cardsPerPlayer = 6; // Each player gets 6 cards
-    int playerHands[numPlayers][cardsPerPlayer] = {0}; // Initialize player hands with 0
-    char homeInput;
-    char rulesInput;
-
-    // Initialize the deck with card values 1 to 52
-    for (int i = 0; i < (deckSize ++);i) {
-        deck[i] = i + 1;
-    }
-
-    // Display the Homescreen
-    homescreen();
-
-    // Display the Rules Screen
-    displayRules();
-
-    // Start the game
-    playGame(playerHands, numPlayers, cardsPerPlayer);
-
-    // Shuffle the deck
-    shuffleDeck(deck, deckSize);
-
-    // Deal cards to players
-    dealCards(deck, numPlayers, cardsPerPlayer, playerHands);
-
+    homescreen();  // this controls everything
     return 0;
 }
 
@@ -57,26 +28,43 @@ void homescreen() {
     cout << "║             ║╚╩═║╚═╝║║║╚╣║║╚╣╔═╗║             ║\n";
     cout << "║             ╚═══╩═══╩╝╚═╩╝╚═╩╝ ╚╝             ║\n";
     cout << "╚═══════════════════════════════════════════════╝\n";
+    cout << "            Press E to start the game            \n";
     cout << "            Press ? to view the rules            \n";
-    cout << "            Press ? to view the rules            \n";
+    cout << "            Press x to close the game            \n";
     cin >> homeInput;
+    homeInput = tolower(homeInput);
     cout << "\n";
 
-    if (homeInput == '?') {
+    if (homeInput == '/') {
         displayRules();
-    } else if (homeInput == '\n') {
+    } else if (homeInput == 'e') {
         cout << "Starting the game...\n";
+
+        int deckSize = 52;
+        int deck[deckSize];
+        const int numPlayers = 4;
+        const int cardsPerPlayer = 6;
+        int playerHands[numPlayers][cardsPerPlayer] = {{0}};
+
+        for (int i = 0; i < deckSize; ++i) {
+            deck[i] = i + 1;
+        }
+
+        shuffleDeck(deck, deckSize);
+        dealCards(deck, numPlayers, cardsPerPlayer, playerHands);
+        playGame(playerHands, numPlayers, cardsPerPlayer);
+
     } else if (homeInput == 'x') {
         cout << "Exiting...\n";
         exit(0);
     } else {
         cout << "Invalid input. Please try again.\n";
+        homescreen(); // restart the prompt
     }
 }
 
 void displayRules() {
     char rulesInput;
-void displayRules(char rulesInput) 
     cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════╗\n";
     cout << "║                                    The Rules of Gurka                                          ║\n";
     cout << "║                                                                                                ║\n";
@@ -98,7 +86,7 @@ void displayRules(char rulesInput)
         cout << "Exiting...\n";
         exit(0);
     } else {
-        cout << homescreen();
+        homescreen();
     }
 }
 
@@ -110,28 +98,27 @@ void shuffleDeck(int deck[], int size) {
 }
 
 // Function to deal cards to players
+void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6])
+{
+    int deckIndex = 0;
     for (int i = 0; i < cardsPerPlayer; ++i) {
         for (int j = 0; j < numPlayers; ++j) {
-        for 
-         j = (0 j < numPlayers; ++j) {
             if (deckIndex < 52) {
                 playerHands[j][i] = deck[deckIndex++];
             }
         }
     }
 }
-
 // Function to play the game
-    for (int i = 0; i < numPlayers; ++i) {
-    for (int i = 0; i < numPlayers; ++i) {
-        cout << "Player " << i + 1 << "'s hand: ";
-        for (int j = 0 j < cardsPerPlayer ++j) {
-            if (playerHands[i][j] != 0) {
-                cout << playerHands[i][j] << " ";
+void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer)
+{
+        for (int i = 0; i < numPlayers; ++i) {
+            cout << "Player " << i + 1 << "'s hand: ";
+            for (int j = 0; j < cardsPerPlayer; ++j) {
+                if (playerHands[i][j] != 0) {
+                    cout << playerHands[i][j] << " ";
+                }
             }
+            cout << endl;
         }
-        cout << endl;
-    }
 }
-    // Placeholder for game logic
-    cout << "Game logic not implemented yet." << endl;
