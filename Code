@@ -3,25 +3,27 @@
 #include <algorithm>
 #include <random>
 #include <ctime>
+#include <limits>
 #include <windows.h>
 
 using namespace std;
 
 // Function declarations
-void homescreen();
+void game();
 void displayRules();
 void shuffleDeck(int deck[], int size);
 void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6]);
 void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer);
+int player1ChooseCard(int playerHand[], int cardsPerPlayer);
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
-    homescreen();  // this controls everything
+    game(); // this controls everything
     return 0;
 }
 
-// Display the title screen
-void homescreen() {
+// Runs the game itself
+void game() {
     char homeInput;
     cout << "╔═══════════════════════════════════════════════╗\n";
     cout << "║             ╔═══╦╗ ╔╦═══╦╗╔═╦═══╗             ║\n";
@@ -48,6 +50,7 @@ void homescreen() {
         const int numPlayers = 4;
         const int cardsPerPlayer = 6;
         int playerHands[numPlayers][cardsPerPlayer] = {{0}};
+        int chosenCardIndex = -1;
 
         for (int i = 0; i < deckSize; ++i) {
             deck[i] = i + 1;
@@ -56,13 +59,13 @@ void homescreen() {
         shuffleDeck(deck, deckSize);
         dealCards(deck, numPlayers, cardsPerPlayer, playerHands);
         playGame(playerHands, numPlayers, cardsPerPlayer);
-
+        player1ChooseCard(playerHand, cardsPerPlayer);
     } else if (homeInput == 'x') {
         cout << "Exiting...\n";
         exit(0);
     } else {
         cout << "Invalid input. Please try again.\n";
-        homescreen(); // restart the prompt
+        game(); // restart the prompt
     }
 }
 
@@ -89,7 +92,7 @@ void displayRules() {
         cout << "Exiting...\n";
         exit(0);
     } else {
-        homescreen();
+        game();
     }
 }
 
@@ -99,6 +102,9 @@ void shuffleDeck(int deck[], int size) {
     mt19937 g(rd());
     shuffle(deck, deck + size, g);
 }
+
+// Assign 1-13, 14-26, 27-39, and 40-52 to different suites
+// Logic: 1=14=17=40, 13=26=39=52, and everything inbetween
 
 // Function to deal cards to players
 void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6])
@@ -122,6 +128,37 @@ void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer)
                     cout << playerHands[i][j] << " ";
                 }
             }
-            cout << endl;
+        cout << endl;
+    }
+}
+// Reminder: Need to plug player1ChooseCard into the rest of the program somehow
+
+// Function to allow Player 1 to select a card, "play" that card,
+// and have that card removed from their hand.
+int player1ChooseCard(int playerHand, int cardsPerPlayer) {
+    int chosenCardIndex = -1;
+
+    while (true) {
+        for (int i = 0; i < cardsPerPlayer; ++i) {
+            if (playerHand[i] != 0) { // Display only valid cards
+                cout << "[" << i + 1 << "] " << playerHand[i] << " ";
+            }
         }
+        cout << endl;
+
+        cout << "Choose a card to play (1-" << cardsPerPlayer << "): ";
+        cin >> chosenCardIndex;
+
+        // Validate input
+        if (chosenCardIndex >= 1 && chosenCardIndex <= cardsPerPlayer && playerHand[chosenCardIndex - 1] != 0) {
+            int chosenCard = playerHand[chosenCardIndex - 1];
+            playerHand[chosenCardIndex - 1] = 0; // Remove the card from the hand
+            return chosenCard; // Return the chosen card
+        }
+
+        else
+        {
+            cout << "Invalid choice. Please select a valid card.\n";
+        }
+    }
 }
