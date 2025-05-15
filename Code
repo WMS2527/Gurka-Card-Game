@@ -14,10 +14,10 @@ void displayRules();
 void shuffleDeck(int deck[], int size);
 void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6]);
 void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer);
-int playerOneChooseCard(int playerHands[], int cardsPerPlayer);
+int player1ChooseCard(int playerHand[], int cardsPerPlayer);
 
 int main() {
-SetConsoleOutputCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
     game(); // this controls everything
     return 0;
 }
@@ -59,7 +59,7 @@ void game() {
         shuffleDeck(deck, deckSize);
         dealCards(deck, numPlayers, cardsPerPlayer, playerHands);
         playGame(playerHands, numPlayers, cardsPerPlayer);
-        playerOneChooseCard(playerHands[], cardsPerPlayer);
+        player1ChooseCard(chosenCardIndex);
     } else if (homeInput == 'x') {
         cout << "Exiting...\n";
         exit(0);
@@ -131,12 +131,12 @@ void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer)
         cout << endl;
     }
 }
-// Reminder: Need to plug player1ChooseCard into the rest of the program somehow
 
 // Function to allow Player 1 to select a card, "play" that card,
 // and have that card removed from their hand.
-int playerOneChooseCard(playerHands[], int cardsPerPlayer) {
-    int chosenCardIndex = -1;
+int player1ChooseCard(int chosenCardIndex) {
+    int playerHands[6];
+     int cardsPerPlayer;
 
     while (true) {
         for (int i = 0; i < cardsPerPlayer; ++i) {
@@ -162,8 +162,5 @@ int playerOneChooseCard(playerHands[], int cardsPerPlayer) {
         }
     }
 }
-        {
-            cout << "Invalid choice. Please select a valid card.\n";
-        }
     }
 }
