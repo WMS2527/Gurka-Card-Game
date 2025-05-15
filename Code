@@ -11,10 +11,6 @@ using namespace std;
 // Function declarations
 void game();
 void displayRules();
-void shuffleDeck(int deck[], int size);
-void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6]);
-void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer);
-int player1ChooseCard(int playerHand[], int cardsPerPlayer);
 
 int main() {
     SetConsoleOutputCP(CP_UTF8);
@@ -44,22 +40,6 @@ void game() {
         displayRules();
     } else if (homeInput == 'e') {
         cout << "Starting the game...\n";
-
-        int deckSize = 52;
-        int deck[deckSize];
-        const int numPlayers = 4;
-        const int cardsPerPlayer = 6;
-        int playerHands[numPlayers][cardsPerPlayer] = {{0}};
-        int chosenCardIndex = -1;
-
-        for (int i = 0; i < deckSize; ++i) {
-            deck[i] = i + 1;
-        }
-
-        shuffleDeck(deck, deckSize);
-        dealCards(deck, numPlayers, cardsPerPlayer, playerHands);
-        playGame(playerHands, numPlayers, cardsPerPlayer);
-        player1ChooseCard(chosenCardIndex);
     } else if (homeInput == 'x') {
         cout << "Exiting...\n";
         exit(0);
@@ -93,74 +73,5 @@ void displayRules() {
         exit(0);
     } else {
         game();
-    }
-}
-
-// Function to shuffle the deck
-void shuffleDeck(int deck[], int size) {
-    random_device rd;
-    mt19937 g(rd());
-    shuffle(deck, deck + size, g);
-}
-
-// Assign 1-13, 14-26, 27-39, and 40-52 to different suites
-// Logic: 1=14=17=40, 13=26=39=52, and everything inbetween
-
-// Function to deal cards to players
-void dealCards(int deck[], int numPlayers, int cardsPerPlayer, int playerHands[][6])
-{
-    int deckIndex = 0;
-    for (int i = 0; i < cardsPerPlayer; ++i) {
-        for (int j = 0; j < numPlayers; ++j) {
-            if (deckIndex < 52) {
-                playerHands[j][i] = deck[deckIndex++];
-            }
-        }
-    }
-}
-// Function to play the game
-void playGame(int playerHands[][6], int numPlayers, int cardsPerPlayer)
-{
-        for (int i = 0; i < numPlayers; ++i) {
-            cout << "Player " << i + 1 << "'s hand: ";
-            for (int j = 0; j < cardsPerPlayer; ++j) {
-                if (playerHands[i][j] != 0) {
-                    cout << playerHands[i][j] << " ";
-                }
-            }
-        cout << endl;
-    }
-}
-
-// Function to allow Player 1 to select a card, "play" that card,
-// and have that card removed from their hand.
-int player1ChooseCard(int chosenCardIndex) {
-    int playerHands[6];
-     int cardsPerPlayer;
-
-    while (true) {
-        for (int i = 0; i < cardsPerPlayer; ++i) {
-            if (playerHands[i] != 0) { // Display only valid cards
-                cout << "[" << i + 1 << "] " << playerHands[i] << " ";
-            }
-        }
-        cout << endl;
-
-        cout << "Choose a card to play (1-" << cardsPerPlayer << "): ";
-        cin >> chosenCardIndex;
-
-        // Validate input
-        if (chosenCardIndex >= 1 && chosenCardIndex <= cardsPerPlayer && playerHands[chosenCardIndex - 1] != 0) {
-            int chosenCard = playerHands[chosenCardIndex - 1];
-            playerHands[chosenCardIndex - 1] = 0; // Remove the card from the hand
-            return chosenCard; // Return the chosen card
-        }
-
-        else
-        {
-            cout << "Invalid choice. Please select a valid card.\n";
-        }
-    }
-}
     }
 }
