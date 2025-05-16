@@ -4,16 +4,15 @@
 #include <random>
 #include <ctime>
 #include <limits>
-#include <windows.h>
 
 using namespace std;
 
 // Function declarations
 void game();
 void displayRules();
+void dealCards();
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8);
     game(); // this controls everything
     return 0;
 }
@@ -33,17 +32,22 @@ void game() {
     cout << "            Press ? to view the rules            \n";
     cout << "            Press x to close the game            \n";
     cin >> homeInput;
-    homeInput = tolower(homeInput);
     cout << "\n";
 
-    if (homeInput == '/') {
+    if (homeInput == '/'){
         displayRules();
-    } else if (homeInput == 'e') {
+    }
+    else if (homeInput == 'e'){
         cout << "Starting the game...\n";
-    } else if (homeInput == 'x') {
+        dealCards();
+    }
+    
+    else if (homeInput == 'x'){
         cout << "Exiting...\n";
         exit(0);
-    } else {
+    }
+    
+    else {
         cout << "Invalid input. Please try again.\n";
         game(); // restart the prompt
     }
@@ -74,4 +78,18 @@ void displayRules() {
     } else {
         game();
     }
+}
+
+void dealCards()
+{
+    int heartTwo;
+    int diamondTwo;
+    int spadeTwo;
+    int clubTwo;
+    string deck[52];
+    if(deck[52] == (0 | 12 | 25 | 38))
+    {
+        deck [0] = (heartTwo||diamondTwo||spadeTwo||clubTwo);
+    }
+    cout << deck;
 }
