@@ -6,6 +6,7 @@
 #include <random>
 #include <ctime>
 #include <limits>
+#include <windows.h>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void displayRules();
 void dealCards();
 
 int main() {
+    SetConsoleOutputCP (CP_UTF8);
     string deck[52];
     game(); // This controls everything
     return 0;
