@@ -16,7 +16,7 @@ void displayRules();
 void dealCards();
 
 int main() {
-    SetConsoleOutputCP (CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
     string deck[52];
     game(); // This controls everything
     return 0;
@@ -40,15 +40,15 @@ void game() {
     cin >> homeInput;
     cout << "\n";
     // Does different things depending on what the input is.
-    if (homeInput == '/'){
+    if (homeInput == '/'||'?'){
         displayRules();
     }
-    else if (homeInput == 'e'){
+    else if (homeInput == 'e'||'E'){
         cout << "Starting the game...\n";
         dealCards();
     }
     
-    else if (homeInput == 'x'){
+    else if (homeInput == 'x'||'X'){
         cout << "Exiting...\n";
         exit(0);
     }
@@ -97,5 +97,15 @@ void dealCards()
                        "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC"};
                        
     // Random device for dealing cards to players
-
+    srand(time(0));
+    
+    int index1 = std::rand() % 52;
+    int index2;
+    
+    do {
+        index2 = std::rand() % 52;
+    } while (index2 == index1);
+    
+    cout << "Player 1's hand: " << deck[index1] << "\n";
+    cout << "Player 2's hand: " << deck[index2] << "\n";
 }
