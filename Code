@@ -1,4 +1,6 @@
 // Note: Code will only work correctly / without errors on Windows devices.
+// To run on other devices, remove "#include <windows.h> and "SetConsoleOutputCP(CP_UTF8)".
+// The homescreen and rules screen will look weird and broken, but the game itself will run.
 #include <iostream>
 #include <algorithm>
 #include <random>
@@ -13,12 +15,14 @@ void displayRules();
 void dealCards();
 
 int main() {
-    game(); // this controls everything
+    string deck[52];
+    game(); // This controls everything
     return 0;
 }
 
 // Runs the game itself
 void game() {
+    // Starts the program by displaying the homescreen / title screen.
     char homeInput;
     cout << "╔═══════════════════════════════════════════════╗\n";
     cout << "║             ╔═══╦╗ ╔╦═══╦╗╔═╦═══╗             ║\n";
@@ -33,7 +37,7 @@ void game() {
     cout << "            Press x to close the game            \n";
     cin >> homeInput;
     cout << "\n";
-
+    // Does different things depending on what the input is.
     if (homeInput == '/'){
         displayRules();
     }
@@ -53,6 +57,8 @@ void game() {
     }
 }
 
+// This function controls the rules screen.
+// View this if you don't know the rules / need a refresher.
 void displayRules() {
     char rulesInput;
     cout << "╔════════════════════════════════════════════════════════════════════════════════════════════════╗\n";
@@ -82,14 +88,12 @@ void displayRules() {
 
 void dealCards()
 {
-    int heartTwo;
-    int diamondTwo;
-    int spadeTwo;
-    int clubTwo;
-    string deck[52];
-    if(deck[52] == (0 | 12 | 25 | 38))
-    {
-        deck [0] = (heartTwo||diamondTwo||spadeTwo||clubTwo);
-    }
-    cout << deck;
+    // This array represents a deck of cards
+    string deck[52] = {"2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "10H", "JH", "QH", "KH", "AH"
+                       "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "JD", "QD", "KD", "AD"
+                       "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS"
+                       "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC"};
+                       
+    // Random device for dealing cards to players
+
 }
