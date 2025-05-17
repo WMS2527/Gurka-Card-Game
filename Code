@@ -6,7 +6,6 @@
 #include <random>
 #include <ctime>
 #include <limits>
-#include <windows.h>
 
 using namespace std;
 
@@ -15,8 +14,9 @@ void game();
 void displayRules();
 void dealCards();
 
-int main() {
-    SetConsoleOutputCP(CP_UTF8);
+int main()
+{
+    SetConsoleOutputCP(CP_UTF8)
     string deck[52];
     game(); // This controls everything
     return 0;
@@ -40,15 +40,15 @@ void game() {
     cin >> homeInput;
     cout << "\n";
     // Does different things depending on what the input is.
-    if (homeInput == '/'||'?'){
+    if (homeInput == '/'){
         displayRules();
     }
-    else if (homeInput == 'e'||'E'){
+    else if (homeInput == 'e'){
         cout << "Starting the game...\n";
         dealCards();
     }
     
-    else if (homeInput == 'x'||'X'){
+    else if (homeInput == 'x'){
         cout << "Exiting...\n";
         exit(0);
     }
@@ -70,6 +70,7 @@ void displayRules() {
     cout << "║Each player is dealt 6 cards                                                                    ║\n";
     cout << "║Player 1 goes first to start, and the winner of each trick (round) begins the next one          ║\n";
     cout << "║Play goes in numerical order (1, 2, 3, etc. for game start)                                     ║\n";
+    cout << "║H, D, S, and C after a number represent card (E.X. 10S is the 10 of Spades)                     ║\n";
     cout << "║After the first card in each round, players must match or beat the value of the highest card    ║\n";
     cout << "║If this is not possible, your lowest value card must be played                                  ║\n";
     cout << "║Repeat this until all players have 1 card left                                                  ║\n";
@@ -95,17 +96,24 @@ void dealCards()
                        "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "JD", "QD", "KD", "AD"
                        "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS"
                        "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC"};
-                       
     // Random device for dealing cards to players
+    // Resolve: Sometimes a "blank" will be "dealt" to a player.
     srand(time(0));
     
-    int index1 = std::rand() % 52;
+    int index1 = rand() % 52;
     int index2;
+    int index3;
     
     do {
-        index2 = std::rand() % 52;
-    } while (index2 == index1);
+        index2 = rand() % 52;
+    } while (index3 == index2 == index1);
+    
+    do {
+        index3 = rand() % 52;
+    } while (index3 == index2 == index1);
     
     cout << "Player 1's hand: " << deck[index1] << "\n";
     cout << "Player 2's hand: " << deck[index2] << "\n";
+    cout << "Player 3's hand: " << deck[index3] << "\n";
 }
+// Next Goal: Get each player to recieve 6 cards instead of just 1.
