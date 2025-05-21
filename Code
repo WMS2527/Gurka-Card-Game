@@ -35,25 +35,26 @@ void game() {
     cout << "║             ║╚╩═║╚═╝║║║╚╣║║╚╣╔═╗║             ║\n";
     cout << "║             ╚═══╩═══╩╝╚═╩╝╚═╩╝ ╚╝             ║\n";
     cout << "╚═══════════════════════════════════════════════╝\n";
-    cout << "            Press E to start the game            \n";
-    cout << "            Press ? to view the rules            \n";
-    cout << "            Press x to close the game            \n";
+    cout << "            Press 1 to start the game            \n";
+    cout << "            Press 2 to view the rules            \n";
+    cout << "            Press 0 to close the game            \n";
     cin >> homeInput;
     cout << "\n";
     // Does different things depending on what the input is.
-    if (homeInput == '/'){
+    if (homeInput == '2'){
         displayRules();
     }
-    else if (homeInput == 'e'){
+
+    else if (homeInput == '1'){
         cout << "Starting the game...\n";
         dealCards();
     }
-    
-    else if (homeInput == 'x'){
+
+    else if (homeInput == '0'){
         cout << "Exiting...\n";
         exit(0);
     }
-    
+
     else {
         cout << "Invalid input. Please try again.\n";
         game(); // restart the prompt
@@ -78,11 +79,11 @@ void displayRules() {
     cout << "║The player with the lowest value card at the end wins                                           ║\n";
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════╝\n";
     cout << "                             Press any key to return to the Main Menu                             \n";
-    cout << "                                   Press 'x' to exit the game                                  \n";
+    cout << "                                   Press '0' to exit the game                                  \n";
     cin >> rulesInput;
     cout << "\n";
 
-    if (rulesInput == 'x') {
+    if (rulesInput == '0') {
         cout << "Exiting...\n";
         exit(0);
     } else {
@@ -93,32 +94,50 @@ void displayRules() {
 void dealCards()
 {
     // This array represents a deck of cards
-    string deck[52] = {"2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "10H", "JH", "QH", "KH", "AH"
-                       "2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "JD", "QD", "KD", "AD"
-                       "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS"
-                       "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC"};
-    // Random device for dealing cards to players
-    // Resolve: Sometimes a "blank" will be "dealt" to a player.
-    // Create a system here to "remove" a value from the array once it's been
-    // assaigned to an index variable.
+    string deck[52] = {"2H ", "3H ", "4H ", "5H ", "6H ", "7H ", "8H ", "9H ", "10H ", "JH ", "QH ", "KH ", "AH ",
+                       "2D ", "3D ", "4D ", "5D ", "6D ", "7D ", "8D ", "9D ", "10D ", "JD ", "QD ", "KD ", "AD ",
+                       "2S ", "3S ", "4S ", "5S ", "6S ", "7S ", "8S ", "9S ", "10S ", "JS ", "QS ", "KS ", "AS ",
+                       "2C ", "3C ", "4C ", "5C ", "6C ", "7C ", "8C ", "9C ", "10C ", "JC ", "QC ", "KC ", "AC "};
+    // Create a system here to remove a value from the
+    // array once it's been assigned to an index variable.
     // (The same card can't show up twice in a deck.)
-    // Doing this should also resolve the "blank" issue. 
     srand(time(0));
-    
-    int index1 = rand() % 52;
-    int index2;
-    int index3;
-    
-    do {
-        index2 = rand() % 52;
-    } while (index3 == index2 == index1);
-    
-    do {
-        index3 = rand() % 52;
-    } while (index3 == index2 == index1);
-    
-    cout << "Player 1's hand: " << deck[index1] << "\n";
-    cout << "Player 2's hand: " << deck[index2] << "\n";
+    // Player 1's hand.
+    string player1Hand[6];
+    // Player 2's hand.
+    string player2Hand[6];
+    // Player 3's hand.
+    string player3Hand[6];
+
+    // Randomly assigns values to player's hands.
+    for(int i = 0; i < 6; i++)
+    {
+        int cardDraw = rand() % 52;
+        deck[cardDraw];
+        player1Hand[i] = deck[cardDraw];
+    }
+
+        for(int i = 0; i < 6; i++)
+    {
+        int cardDraw = rand() % 52;
+        deck[cardDraw];
+        player2Hand[i] = deck[cardDraw];
+    }
+
+        for(int i = 0; i < 6; i++)
+    {
+        int cardDraw = rand() % 52;
+        deck[cardDraw];
+        player3Hand[i] = deck[cardDraw];
+    }
+
+    // Displays each player's hands.
+    cout << "Player 1's hand: " << player1Hand[0] << "\n";
+    cout << "Player 2's hand: " << player2Hand[0] << "\n";
+    cout << "Player 3's hand: " << player3Hand[0] << "\n";
+}
+// Current Goal: Get each player to receive 6 cards instead of just 1.
+
     cout << "Player 3's hand: " << deck[index3] << "\n";
 }
 // Next Goal: Get each player to recieve 6 cards instead of just 1.
