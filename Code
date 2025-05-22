@@ -40,16 +40,16 @@ void game() {
     cout << "            Press 0 to close the game            \n";
     cin >> homeInput;
     cout << "\n";
-    // Does different things depending on what the input is.
+    // Displays the rules screen
     if (homeInput == '2'){
         displayRules();
     }
-
+    // Starts the game part of the program.
     else if (homeInput == '1'){
         cout << "Starting the game...\n";
         dealCards();
     }
-
+    // Closes the program from the homescreen.
     else if (homeInput == '0'){
         cout << "Exiting...\n";
         exit(0);
@@ -82,7 +82,7 @@ void displayRules() {
     cout << "                                   Press '0' to exit the game                                  \n";
     cin >> rulesInput;
     cout << "\n";
-
+    // Controls the inputs for when this screen is displayed.
     if (rulesInput == '0') {
         cout << "Exiting...\n";
         exit(0);
@@ -98,9 +98,11 @@ void dealCards()
                        "2D ", "3D ", "4D ", "5D ", "6D ", "7D ", "8D ", "9D ", "10D ", "JD ", "QD ", "KD ", "AD ",
                        "2S ", "3S ", "4S ", "5S ", "6S ", "7S ", "8S ", "9S ", "10S ", "JS ", "QS ", "KS ", "AS ",
                        "2C ", "3C ", "4C ", "5C ", "6C ", "7C ", "8C ", "9C ", "10C ", "JC ", "QC ", "KC ", "AC "};
+    // Current Goal:
     // Create a system here to remove a value from the
     // array once it's been assigned to an index variable.
     // (The same card can't show up twice in a deck.)
+    // Random device for selecting cards.
     srand(time(0));
     // Player 1's hand.
     string player1Hand[6];
@@ -109,21 +111,21 @@ void dealCards()
     // Player 3's hand.
     string player3Hand[6];
 
-    // Randomly assigns values to player's hands.
+    // Randomly assigns values to player 1's hand.
     for(int i = 0; i < 6; i++)
     {
         int cardDraw = rand() % 52;
         deck[cardDraw];
         player1Hand[i] = deck[cardDraw];
     }
-
+    // Randomly assigns values to player 2's hand.
         for(int i = 0; i < 6; i++)
     {
         int cardDraw = rand() % 52;
         deck[cardDraw];
         player2Hand[i] = deck[cardDraw];
     }
-
+    // Randomly assigns values to player 3's hand.
         for(int i = 0; i < 6; i++)
     {
         int cardDraw = rand() % 52;
@@ -132,12 +134,7 @@ void dealCards()
     }
 
     // Displays each player's hands.
-    cout << "Player 1's hand: " << player1Hand[0] << "\n";
-    cout << "Player 2's hand: " << player2Hand[0] << "\n";
-    cout << "Player 3's hand: " << player3Hand[0] << "\n";
+    cout << "Player 1's hand: " << player1Hand[0] << player1Hand[1] << player1Hand[2] << player1Hand[3] << player1Hand[4] << player1Hand[5] << "\n";
+    cout << "Player 2's hand: " << player2Hand[0] << player2Hand[1] << player2Hand[2] << player2Hand[3] << player2Hand[4] << player2Hand[5] << "\n";
+    cout << "Player 3's hand: " << player3Hand[0] << player3Hand[1] << player3Hand[2] << player3Hand[3] << player3Hand[4] << player3Hand[5] << "\n";
 }
-// Current Goal: Get each player to receive 6 cards instead of just 1.
-
-    cout << "Player 3's hand: " << deck[index3] << "\n";
-}
-// Next Goal: Get each player to recieve 6 cards instead of just 1.
