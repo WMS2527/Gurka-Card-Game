@@ -117,19 +117,19 @@ void dealCards()
     // Player 3's hand.
     vector <string> p3Hand = {"0", "1", "2", "3", "4", "5"};
 
-    // Randomly assigns values to player 1's hand, then removes.
+    // Randomly assigns values to player 1's hand, then removes assigned values from the deck.
     for (size_t i = 0; i < 6; ++i){
     p1Hand[i] = deck.back();
     deck.pop_back();
     }
 
-    // Randomly assigns values to player 2's hand.
+    // Randomly assigns values to player 2's hand, then removes assigned values from the deck.
     for (size_t i = 0; i < 6; ++i){
     p2Hand[i] = deck.back();
     deck.pop_back();
     }
 
-    // Randomly assigns values to player 3's hand.
+    // Randomly assigns values to player 3's hand, then removes assigned values from the deck.
     for (size_t i = 0; i < 6; ++i){
     p3Hand[i] = deck.back();
     deck.pop_back();
