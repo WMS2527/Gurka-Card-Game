@@ -1,6 +1,10 @@
 // Note: Code will only work correctly / without errors on Windows devices.
 // To run on other devices, remove "#include <windows.h> and "SetConsoleOutputCP(CP_UTF8)".
 // The homescreen and rules screen will look weird and broken, but the game itself will run.
+// 2 problems:
+// 1: The "deck shuffling" code gives the same result every time.
+// 2: The logic for forcing the lowest card doesn't work.
+// (And if it does, I don't know how)
 #include <iostream>
 #include <algorithm>
 #include <random>
