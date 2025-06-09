@@ -110,6 +110,8 @@ void displayRules()
     }
 }
 
+// Displays a scoreboard showing how many wins each player gets.
+// May be buggy.
 void scoreboard()
 {
     char scoreInput;
