@@ -148,8 +148,6 @@ void dealCards()
                            "2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS",
                            "2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC"};
 
-    // Error to be resolved:
-    // Random device/shuffling gives the same result every time.
     random_device rd;
     mt19937 g(rd());
     shuffle(deck.begin(), deck.end(), g);
