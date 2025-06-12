@@ -177,9 +177,9 @@ void scoreboard()
     cout << "║                                            Scoreboard                                          ║\n";
     cout << "║Every win each player gets will appear here.                                                    ║\n";
     cout << "║Resets when the game is closed.                                                                 ║\n";
-    cout << "║Player 1's Score: " << p1Score << "                                                               ║\n";
-    cout << "║Player 2's Score: " << p2Score << "                                                               ║\n";
-    cout << "║Player 3's Score: " << p3Score << "                                                               ║\n";
+    cout << "║Player 1's Score: " << p1Score << "                                                            ║\n";
+    cout << "║Player 2's Score: " << p2Score << "                                                            ║\n";
+    cout << "║Player 3's Score: " << p3Score << "                                                            ║\n";
     cout << "╚════════════════════════════════════════════════════════════════════════════════════════════════╝\n";
     cout << "                             Press any key to return to the Main Menu                             \n";
     cout << "                                   Press '0' to exit the game                                  \n";
